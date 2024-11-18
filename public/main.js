@@ -4,7 +4,7 @@ function initialize() {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const name = document.getElementById("name").value.trim()
+        const name = document.getElementById("name").value
         const email = document.getElementById("email").value.trim()
         
         const userData = { name, email };
@@ -23,6 +23,12 @@ function initialize() {
         })
         const formJson = await formData.json()
         console.log(formJson);
+
+        if (formData.ok) {
+            form.reset();
+        } else {
+            alert(formJson.error || 'Something went wrong');
+        }
     })
 
     const getUsersBtn = document.getElementById('getUsers')
