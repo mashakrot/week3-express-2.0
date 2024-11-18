@@ -1,10 +1,10 @@
-import {Request, Response, Router} from "express"
+import express, {Request, Response, Router} from "express"
 import fs from "fs"
 import { compile } from "morgan"
 
 const router: Router = Router()
 
-let poems: string[] = []
+let numbers: string[] = []
 
 // fs.readFile("data/poems.json", "utf8", (err: NodeJS.ErrnoException | null, data: string) => {
 //     if (err) {
@@ -18,6 +18,10 @@ let poems: string[] = []
 //     }
 // })
 
+router.use((req, res, next) => {
+    express.json()(req, res, next);
+});
+
 router.get('/hello', (req: Request, res: Response) => {
     res.json({ msg: "Hello world!" });
 });
@@ -28,21 +32,20 @@ router.get('/echo/:id', (req: Request, res: Response) => {
 });
 
 
-router.post("/:id", (req: Request, res: Response) => {
-    let poem: string = req.body
-    console.log(poem)
-    poems.push(poem)
+router.post("/sum", (req: Request, res: Response) => {
+    // const { numbers } = req.body;
+    let numbers: number[] = req.body
 
-    fs.writeFile("data/poems.json", JSON.stringify(poems), (err: NodeJS.ErrnoException | null) => {
-        if (err) {
-            console.error(err)
-            return
-        }
-        res.json(poems)
 
-    })
-    
-})
+    // if (!Array.isArray(numbers) || !numbers.every(num => typeof num === 'number')) {
+    //     return res.status(400).json({ error: 'Invalid input. Please provide an array of numbers.' });
+    // }
+   
+    const sum: number = numbers.reduce((total, num) => total + num, 0);
+
+  // Send back the sum in a JSON object
+    res.json({ sum });
+});
 
 
 
