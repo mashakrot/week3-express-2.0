@@ -39,7 +39,7 @@ router.post("/sum", (req: Request, res: Response) => {
 router.post("/users", (req: Request, res: Response) => {
     const { name, email } = req.body
 
-    const newUser: TUser = { name: name.trim(), email: email.trim() }
+    const newUser: TUser = { name: name, email: email.trim() }
 
     users.push(newUser)
 
@@ -49,7 +49,7 @@ router.post("/users", (req: Request, res: Response) => {
 
 router.get("/users", (req: Request, res: Response) => {
     // let users: any = req.params
-    // console.log(users);
+    console.log(users);
     
     // // try{
     // //     res.json(poems[id])

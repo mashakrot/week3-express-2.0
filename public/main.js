@@ -4,16 +4,14 @@ function initialize() {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const nameInput = document.getElementById("name").value
-        const emailInput = document.getElementById("email").value
+        const name = document.getElementById("name").value
+        const email = document.getElementById("email").value
         
-        const userData = {
-            name: nameInput,
-            email: emailInput
-          };
+        const userData = { name, email };
+
       
         console.log(userData);
-        console.log(JSON.stringify(userData));
+        console.log(JSON.stringify(userData.name) + " gggggg");
         
         const formData = await fetch("/users", {
             method: "post",
@@ -43,11 +41,15 @@ function initialize() {
             console.log(element.name);
             
             let newListItem = document.createElement("li")
-            // newListItem.appendChild(document.createTextNode(element.name + " - " + element.email))
-            newListItem.textContent = `${element.name} - ${element.email}`;
+            newListItem.appendChild(document.createTextNode(element.name + " - " + element.email))
+            // newListItem.textContent = `${element.name} - ${element.email}`;
             userList.appendChild(newListItem)    
             
         });
+
+        const List = document.getElementById("userList")
+        console.log(List);
+        
     })
 }
 
