@@ -29,14 +29,8 @@ router.get('/echo/:id', (req: Request, res: Response) => {
 
 
 router.post("/sum", (req: Request, res: Response) => {
-    // const { numbers } = req.body;
     const numbers: number[] = req.body.numbers
     console.log(numbers)
-
-    // if (!Array.isArray(numbers) || !numbers.every(num => typeof num === 'number')) {
-    //     return res.status(400).json({ error: 'Invalid input. Please provide an array of numbers.' });
-    // }
-   
     const sum: number = numbers.reduce((total, num) => total + num, 0);
     res.json({ sum });
 });
@@ -53,15 +47,17 @@ router.post("/users", (req: Request, res: Response) => {
 });
 
 
-// router.get("/:id", (req: Request, res: Response) => {
-//     let id: number = parseInt(req.params.id)
-//     try{
-//         res.json(poems[id])
-//     } catch (error: any) {
-//         console.error(`Error parsing JSON: ${error}`)
-//     }
+router.get("/users", (req: Request, res: Response) => {
+    let id: any = req.params
+    console.log(id);
+    
+    // try{
+    //     res.json(poems[id])
+    // } catch (error: any) {
+    //     console.error(`Error parsing JSON: ${error}`)
+    // }
    
-// })
+})
 
 
 

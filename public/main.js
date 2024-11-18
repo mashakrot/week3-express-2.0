@@ -28,31 +28,34 @@ function initialize() {
         // addNewPoem(poemInput.value, vip.ckecked)
     })
 
-    // const addPoemButtonFromAPI = document.getElementById('add-poem-from-api')
+    const getUsersBtn = document.getElementById('getUsers')
 
-    // addPoemButtonFromAPI.addEventListener("click", async function() {
-    //     const poemData = await fetch("http://localhost:8000/")
-    //     const poemResponse = await poemData.json()
+    getUsersBtn.addEventListener("click", async function() {
+        const usersData = await fetch("http://localhost:3000/users")
+        const usersResponse = await usersData.json()
 
-    //     poemResponse.forEach(element => {
-    //         addNewPoem(element.poem, false)
+        console.log(usersResponse);
+        
+
+
+        usersResponse.forEach(element => {
+            console.log(element.name);
+            console.log(element.body);
             
-    //     });
-    // })
+            addNewUser(element.body)
+            
+        });
+    })
 }
 
-// function addNewPoem(poem, vip) {
-//     const theWall = document.getElementById("the-wall")
-//     let newListItem = document.createElement("li")
-
-//     if (vip == true) {
-//         newListItem.classList.add("vip")
-//     }
+function addNewUser(element) {
+    const userList = document.getElementById("userList")
+    let newListItem = document.createElement("li")
     
-//     newListItem.classList.add("col", "s6", "m4", "l3")
-//     newListItem.appendChild(document.createTextNode(poem))
-//     theWall.appendChild(newListItem)
+    // newListItem.classList.add("col", "s6", "m4", "l3")
+    newListItem.appendChild(document.createTextNode(element))
+    userList.appendChild(newListItem)
 
-// }
+}
 
 initialize()
