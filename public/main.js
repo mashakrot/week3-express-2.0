@@ -12,8 +12,10 @@ function initialize() {
             email: emailInput
           };
       
-
-        const formData = await fetch("http://localhost:3000/users", {
+        console.log(userData);
+        console.log(JSON.stringify(userData));
+        
+        const formData = await fetch("/users", {
             method: "post",
             headers: {
                 "Content-type": "application/json"
@@ -25,10 +27,10 @@ function initialize() {
         console.log(formJson);
     })
 
-    const getUsersBtn = document.getElementById('getUser')
+    const getUsersBtn = document.getElementById('getUsers')
 
     getUsersBtn.addEventListener("click", async function() {
-        const usersData = await fetch("http://localhost:3000/users")
+        const usersData = await fetch("/users")
         const usersResponse = await usersData.json()
 
         console.log(usersResponse);
@@ -40,9 +42,9 @@ function initialize() {
             console.log(element.name);
             console.log(element.body);
             
-            addNewUser(element.body)
+            // addNewUser(element.body)
             let newListItem = document.createElement("li")
-            newListItem.appendChild(document.createTextNode(element.body))
+            newListItem.appendChild(document.createTextNode(element.name + " - " + element.email))
             userList.appendChild(newListItem)    
         });
     })
