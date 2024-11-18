@@ -43,7 +43,7 @@ router.post("/users", (req: Request, res: Response) => {
 
     users.push(newUser)
 
-    res.json({ message: `User ${name} with email ${email} was submitted successfully.` });
+    res.json({ message: `User successfully added` });
 });
 
 
