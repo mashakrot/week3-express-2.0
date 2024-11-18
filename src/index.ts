@@ -51,8 +51,18 @@ router.get("/users", (req: Request, res: Response) => {
     // let users: any = req.params
     console.log(users);
     
-    res.json({ users });
+    // // try{
+    // //     res.json(poems[id])
+    // // } catch (error: any) {
+    // //     console.error(`Error parsing JSON: ${error}`)
+    // // }
+    // res.json({ users });
+    
+    res.status(201).json({ users });
 })
+
+
+
 
 
 export default router
