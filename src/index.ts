@@ -51,7 +51,7 @@ router.get("/users", (req: Request, res: Response) => {
     // let users: any = req.params
     console.log(users);
     
-    res.status(201).json({ users });
+    res.json({ users });
 })
 
 
