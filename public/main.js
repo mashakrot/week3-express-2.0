@@ -34,18 +34,19 @@ function initialize() {
         const usersResponse = await usersData.json()
 
         console.log(usersResponse);
+
         const userList = document.getElementById("userList")
         userList.innerHTML = '';
 
 
-        usersResponse.forEach(element => {
+        usersResponse.users.forEach(element => {
             console.log(element.name);
-            console.log(element.body);
             
-            // addNewUser(element.body)
             let newListItem = document.createElement("li")
-            newListItem.appendChild(document.createTextNode(element.name + " - " + element.email))
+            // newListItem.appendChild(document.createTextNode(element.name + " - " + element.email))
+            newListItem.textContent = `${element.name} - ${element.email}`;
             userList.appendChild(newListItem)    
+            
         });
     })
 }

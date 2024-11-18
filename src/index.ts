@@ -58,7 +58,7 @@ router.get("/users", (req: Request, res: Response) => {
     // // }
     // res.json({ users });
     
-    res.status(201).json(users);
+    res.status(201).json({ users });
 })
 
 
